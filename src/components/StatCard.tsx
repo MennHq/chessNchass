@@ -6,10 +6,9 @@ interface StatCardProps {
   icon: React.ReactNode;
   data: { current: number | null; peak: number | null };
   theme: "emerald" | "orange" | "indigo";
-  loading?: boolean;
 }
 
-export default function StatCard({ title, icon, data, theme, loading }: StatCardProps) {
+export default function StatCard({ title, icon, data, theme }: StatCardProps) {
   // Overriding themes to be minimal monochromatic glass
   return (
     <div className="rounded-[24px] border border-white/5 bg-white/[0.02] backdrop-blur-xl p-6 flex flex-col justify-between transition-all hover:bg-white/[0.04]">
@@ -22,17 +21,11 @@ export default function StatCard({ title, icon, data, theme, loading }: StatCard
 
       <div className="mt-6 flex flex-col">
         <div className="flex items-end gap-2">
-          {loading ? (
-            <div className="h-[36px] w-[80px] bg-white/5 rounded-xl animate-pulse mt-1 mb-1"></div>
-          ) : (
-            <>
-              <span className="text-4xl font-display font-medium tracking-tight text-white leading-none">
-                {data.current !== null ? data.current : "N/A"}
-              </span>
-              {data.current !== null && (
-                 <span className="font-mono text-[9px] uppercase font-medium tracking-widest text-neutral-500 mb-1">RTG</span>
-              )}
-            </>
+          <span className="text-4xl font-display font-medium tracking-tight text-white leading-none">
+            {data.current !== null ? data.current : "N/A"}
+          </span>
+          {data.current !== null && (
+             <span className="font-mono text-[9px] uppercase font-medium tracking-widest text-neutral-500 mb-1">RTG</span>
           )}
         </div>
         <div className="mt-5 flex items-center justify-between border-t border-white/5 pt-4">
@@ -40,13 +33,9 @@ export default function StatCard({ title, icon, data, theme, loading }: StatCard
             <TrendingUp className="h-3.5 w-3.5" />
             <span className="font-mono uppercase tracking-widest text-[9px]">Peak Record</span>
           </div>
-          {loading ? (
-            <div className="h-[18px] w-[45px] bg-white/5 rounded-lg animate-pulse"></div>
-          ) : (
-            <span className="font-sans text-[13px] font-medium tracking-wide text-neutral-300">
-              {data.peak !== null ? data.peak : "N/A"}
-            </span>
-          )}
+          <span className="font-sans text-[13px] font-medium tracking-wide text-neutral-300">
+            {data.peak !== null ? data.peak : "N/A"}
+          </span>
         </div>
       </div>
     </div>
